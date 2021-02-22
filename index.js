@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const request = require('request');
-var sslRootCAs = require('ssl-root-cas/latest')
+var sslRootCAs = require('ssl-root-cas')
 sslRootCAs.inject()
 try {
   const jenkinsUrl = core.getInput('jenkinsUrl');
