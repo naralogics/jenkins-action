@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const request = require('request');
-
+var sslRootCAs = require('ssl-root-cas/latest')
+sslRootCAs.inject()
 try {
   const jenkinsUrl = core.getInput('jenkinsUrl');
   const username = core.getInput('username');
@@ -8,12 +9,11 @@ try {
   const jobName = core.getInput('job');
   const params = JSON.parse( core.getInput('params'));
 
-  
   request.post({baseUrl: jenkinsUrl
-    , uri: 'job/' + jobName + '/buildWithParameters' 
+    , uri: 'job/' + jobName + '/buildWithParameters'
     , qs: params})
     .auth(username,token)
-    
+
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 } catch (error) {
