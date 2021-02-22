@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const request = require('request');
-const sslRootCAs = require('ssl-root-cas/latest')
-const rootCas = require('ssl-root-cas/latest').create();
+const sslRootCAs = require('ssl-root-cas')
+const rootCas = require('ssl-root-cas').create();
 
 // default for all https requests
 // (whether using https directly, request, or another module)
