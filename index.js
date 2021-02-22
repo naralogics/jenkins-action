@@ -1,7 +1,13 @@
 const core = require('@actions/core');
 const request = require('request');
-var sslRootCAs = require('ssl-root-cas')
+var sslRootCAs = require('ssl-root-cas/latest')
 sslRootCAs.inject()
+var rootCas = require('ssl-root-cas/latest').create();
+
+// default for all https requests
+// (whether using https directly, request, or another module)
+require('https').globalAgent.options.ca = rootCas;
+
 try {
   const jenkinsUrl = core.getInput('jenkinsUrl');
   const username = core.getInput('username');
