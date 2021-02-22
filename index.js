@@ -2,7 +2,9 @@ const core = require('@actions/core');
 const request = require('request');
 const sslRootCAs = require('ssl-root-cas')
 const rootCas = require('ssl-root-cas').create();
-
+const fs = require('fs');
+const https = require('https');
+https.globalAgent.options.ca = yourCertificatePEMcontent + fs.readFileSync('node_modules/node_extra_ca_certs_mozilla_bundle/ca_bundle/ca_intermediate_root_bundle.pem');
 // default for all https requests
 // (whether using https directly, request, or another module)
 
